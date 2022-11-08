@@ -15,12 +15,7 @@ Make sure you have the following tools installed on your system:
 
 ## Get Started
 
-Once you have cloned this project to your machine, navigate to the project directory in your terminal, and then run the following scripts to install the required node modules and run the app virtually:
-
-1. `npm install`
-2. `npm start`
-
-The seconde script will automatically start the local web server and you will be able to view the app at `localhost:3000`
+Once you have cloned this project to your machine, navigate to the project directory in your terminal, and then run `npm install` to install the required node modules.
 
 ---
 
@@ -30,17 +25,16 @@ In the project directory, you can run:
 
 #### `npm start`
 
-Runs the webapp in the default development mode and opens it in a web browser.
+Runs the package in the default development mode, but won't be usable on it's own.
 
-#### `npm test`
-
-Launches the test runner in the interactive watch mode, and will output results in your terminal.
 
 #### `npm run build`
 
-Builds a production ready bundle for the app. Useful for seeing exactly how the webapp is served to end users.
+Builds a production ready bundle for the app in the `/dist` folder, complete with accompanying files.
 
-This app is ready to be deployed!
+#### `npm publish ./dist`
+
+Publishes the contents of the `/dist` folder to NPM.
 
 ---
 
