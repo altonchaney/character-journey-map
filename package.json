@@ -2,15 +2,19 @@
   "name": "character-journey-map",
   "description": "An interactive character journey mapping component package",
   "author": "altonchaney",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "react",
     "components",
     "ui"
   ],
+  "bugs": {
+    "url": "https://github.com/altonchaney/character-journey-map/issues"
+  },
+  "homepage": "https://github.com/altonchaney/character-journey-map#readme",
+  "license": "MIT",
   "private": false,
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -21,7 +25,6 @@
     "@types/react-dom": "^18.0.6",
     "leaflet": "^1.9.1",
     "leaflet-draw": "^0.4.14",
-    "leaflet.polyline.snakeanim": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
@@ -34,7 +37,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && cp package.json README.md ./dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -49,11 +53,6 @@
     "not dead",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.20.2",
-    "@babel/preset-env": "^7.20.2"
-  },
   "main": "dist/index.tsx",
   "module": "dist/index.tsx",
   "files": [
