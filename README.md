@@ -9,6 +9,7 @@ An interactive character journey mapping component package that utilizes Leaflet
 Make sure you have the following tools installed on your system:
 
 1. `node 14+ & npm 6+`: https://nodejs.org/en/
+1. `copyfiles ~2.4`: https://www.npmjs.com/package/copyfiles
 
 ---
 
