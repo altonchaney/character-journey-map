@@ -61,7 +61,7 @@ export type Marker = {
   image?: string;
   appearances: { [x: number]: Chapter[] };
   description?: string;
-  coppermindLink?: string;
+  wikiLink?: string;
   confirmed: boolean;
 };
 

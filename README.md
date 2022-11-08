@@ -1,6 +1,6 @@
 # Character Journey Map
 
-An interactive character journey mapping package that utilizes Leaflet for mapping functionality and react to create UI components for use in various media interactive maps.
+An interactive character journey mapping component package that utilizes Leaflet for mapping functionality and react to create UI components for use in various media interactive maps.
 
 ---
 
