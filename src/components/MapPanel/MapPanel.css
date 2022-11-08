@@ -5,6 +5,7 @@
   left: -300px;
   transition: 0.3s left;
   margin: 20px;
+  
   max-width: 280px;
   max-height: calc(100vh - 180px);
   overflow-y: scroll;
@@ -12,6 +13,10 @@
 
 .MapPanel.open {
   left: 0px;
+}
+
+.MapPanel.content-container {
+  padding: 0 20px 20px;
 }
 
 .CharacterList {
@@ -33,11 +38,7 @@
 .exit {
   position: absolute;
   left: 20px;
-  top: 30px;
-}
-
-.MapPanel h1 {
-  margin: -2px 0 -25px;
+  top: 33px;
 }
 
 .panel-control {

@@ -11,7 +11,7 @@ import colors from '../../assets/colors';
 const MapPanel = (
   props: {
     title: string,
-    details?: { planet: string, description: string }
+    details?: { planet?: string, description?: string }
     characters: Character[],
     installments: Installment[],
     visibleRange: number[],
