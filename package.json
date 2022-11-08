@@ -2,8 +2,12 @@
   "name": "character-journey-map",
   "description": "An interactive character journey mapping component package",
   "author": "altonchaney",
-  "version": "1.0.2",
-  "keywords": ["react", "components", "ui"],
+  "version": "1.0.3",
+  "keywords": [
+    "react",
+    "components",
+    "ui"
+  ],
   "private": false,
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -40,18 +44,11 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
@@ -59,9 +56,12 @@
   },
   "main": "dist/index.tsx",
   "module": "dist/index.tsx",
-  "files": [ "dist", "README.md" ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/altonchaney/character-journey-map.git"
+    "type": "git",
+    "url": "git+https://github.com/altonchaney/character-journey-map.git"
   }
 }
