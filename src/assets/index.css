@@ -138,7 +138,10 @@ hr {
 label {
   background-color: var(--whiteTransparent);
   color: var(--black);
+  text-transform: uppercase;
+  font-family: 'InconsolataExpandedSemiBold', sans-serif;
   font-size: 10px;
+  letter-spacing: 1px;
   padding: 4px;
   border-radius: 15px;
 }
