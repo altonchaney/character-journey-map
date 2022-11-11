@@ -7,14 +7,33 @@
   --black: #202124;
 }
 
+@font-face {
+  font-family: 'InconsolataExpandedSemiBold';
+  src: url('./fonts/Inconsolata_Expanded-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'InconsolataSemiExpandedLight';
+  src: url('./fonts/Inconsolata_SemiExpanded-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GaramondSemiBold';
+  src: url('./fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GaramondBold';
+  src: url('./fonts/CormorantGaramond-Bold.ttf') format('truetype');
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Alegreya', serif;
-  font-weight: 600;
+  font-family: 'InconsolataSemiExpandedLight', sans-serif;
   font-size: 14px;
   text-align: center;
   line-height: 16px;
@@ -35,13 +54,8 @@ a, a:visited, a:hover {
   color: var(--white);
 }
 
-h2 {
-  margin: 0;
-}
-
 h1 {
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: 900;
+  font-family: 'GaramondSemiBold', serif;
   letter-spacing: -0.5px;
   font-size: 42px;
   line-height: 42px;
@@ -54,22 +68,27 @@ h1.alt {
 }
 
 h2 {
+  font-family: 'GaramondSemiBold', serif;
+  letter-spacing: -0.5px;
   font-size: 23px;
   letter-spacing: -0.25px;
+  margin: 0;
 }
 
 p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   color: var(--lightGray);
   text-align: left;
 }
 
 p.alt {
-  font-size: 13px;
-  line-height: 16px;
+  font-family: 'InconsolataExpandedSemiBold', sans-serif;
+  font-size: 10px;
+  line-height: 20px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
   text-align: center;
-  font-style: italic;
 }
 
 ul {
@@ -85,6 +104,11 @@ li {
 
 li > i {
   color: var(--lightGray);
+}
+
+p.opaque {
+  display: inline;
+  opacity: 0.5
 }
 
 .title {
@@ -114,13 +138,13 @@ hr {
 label {
   background-color: var(--whiteTransparent);
   color: var(--black);
-  font-size: 12px;
+  font-size: 10px;
   padding: 4px;
   border-radius: 15px;
 }
 
 .content-container {
-  padding: 20px;
+  padding: 20px 20px 30px;
   border-radius: 8px;
   background-color: var(--black);
   box-shadow: var(--shadow);

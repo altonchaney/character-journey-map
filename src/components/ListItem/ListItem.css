@@ -1,4 +1,7 @@
 .ListItem {
+  font-family: 'GaramondBold', serif;
+  font-size: 16px;
+  line-height: 18px;
   position: relative;
   width: 80px;
   display: flex;

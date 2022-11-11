@@ -2,7 +2,7 @@
   "name": "character-journey-map",
   "description": "An interactive character journey mapping component package",
   "author": "altonchaney",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "keywords": [
     "react",
     "components",
@@ -38,7 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "clean": "rimraf dist/",
-    "copy-files": "copyfiles -u 1 src/**/*.css src/**/**/*.css dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css src/**/**/*.css src/assets/fonts/*.ttf dist/",
     "build": "npm run clean && tsc && cp package.json README.md ./dist && yarn copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

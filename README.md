@@ -4,22 +4,20 @@ An interactive character journey mapping component package that utilizes Leaflet
 
 ---
 
-## Dev Requirements
+## Installation
+
+`npm i character-journey-map`
+
+---
+
+## Dev Contributor Requirements
 
 Make sure you have the following tools installed on your system:
 
 1. `node 14+ & npm 6+`: https://nodejs.org/en/
-1. `copyfiles ~2.4`: https://www.npmjs.com/package/copyfiles
+2. `copyfiles ~2.4`: https://www.npmjs.com/package/copyfiles
 
----
-
-## Get Started
-
-Once you have cloned this project to your machine, navigate to the project directory in your terminal, and then run `npm install` to install the required node modules.
-
----
-
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 

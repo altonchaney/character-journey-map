@@ -67,7 +67,8 @@ const MapTimeline = (props: { type: MediaType, installment: Installment, initial
                       marginTop: 0,
                       whiteSpace: 'nowrap',
                       transform: 'rotate(30deg)',
-                      textAlign: 'right'
+                      textAlign: 'right',
+                      letterSpacing: 0
                     }}
                   >
                     {

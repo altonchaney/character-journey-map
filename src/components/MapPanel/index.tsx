@@ -43,7 +43,7 @@ const MapPanel = (
             <ul>
               {
                 Object.keys(details).map((key) => (
-                  <li key={(details as any)[key]}><i>{ key[0].toUpperCase() + key.slice(1) }:</i> { (details as any)[key] }</li>
+                  <li key={(details as any)[key]}><p className='opaque'>{ key[0].toUpperCase() + key.slice(1) }:</p> { (details as any)[key] }</li>
                 ))
               }
             </ul>
