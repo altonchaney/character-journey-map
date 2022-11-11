@@ -2,9 +2,13 @@
   "name": "character-journey-map",
   "description": "An interactive character journey mapping component package",
   "author": "altonchaney",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "keywords": [
     "react",
+    "leaflet",
+    "interactive",
+    "entertainment",
+    "map",
     "components",
     "ui"
   ],
