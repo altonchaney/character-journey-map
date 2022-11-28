@@ -8,8 +8,8 @@ import './MapTimeline.css';
 
 export type ChapterRange = { start: Chapter, end: Chapter };
 
-const MapTimeline = (props: { type: MediaType, installment: Installment, initialValue?: number[], callback: (range: number[]) => void }) => {
-  const { type, installment, initialValue, callback } = props;
+const MapTimeline = (props: { installment: Installment, initialValue?: number[], callback: (range: number[]) => void }) => {
+  const { installment, initialValue, callback } = props;
   const [selectedRange, setSelectedRange] = useState<number[]>([0, 0]);
   const [initialValueSet, setInitialValueSet] = useState<boolean>(false);
 
@@ -32,7 +32,7 @@ const MapTimeline = (props: { type: MediaType, installment: Installment, initial
   return (
     <div className='MapTimeline'>
       <div className='content-container'>
-        <p className='alt'>{ installment.title } { MediaInstallment[type] } List</p>
+        <p className='alt'>{ installment.title } { MediaInstallment[installment.type] } List</p>
         <div className='scroll-container'>
           <div
             className='range-container'
@@ -73,7 +73,7 @@ const MapTimeline = (props: { type: MediaType, installment: Installment, initial
                   >
                     {
                       installment.chapters[index] &&
-                      (installment.chapters[index].altName || `${ MediaInstallment[type].slice(0, 2) }. ${installment.chapters[index].chapter}`)
+                      (installment.chapters[index].altName || `${ MediaInstallment[installment.type].slice(0, 2) }. ${installment.chapters[index].chapter}`)
                     }
                   </p>
                 </div>

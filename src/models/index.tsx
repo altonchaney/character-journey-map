@@ -14,7 +14,6 @@ export enum MediaInstallment {
 
 export type Series = {
   title: string;
-  type: MediaType;
   stub: string;
   image: string;
   color: string;
@@ -27,6 +26,7 @@ export type Series = {
 
 export type Installment = {
   title: string;
+  type: MediaType;
   image: string;
   chapters: Chapter[];
 };
@@ -57,7 +57,7 @@ export type Map = {
 export type Marker = {
   title: string;
   coordinates: L.LatLngTuple;
-  type: 'region' | 'city' | 'town' | 'event' | 'battle' | 'point of interest';
+  type: 'planet' | 'region' | 'city' | 'town' | 'event' | 'battle' | 'point of interest';
   image?: string;
   appearances: { [x: number]: Chapter[] };
   description?: string;

@@ -210,7 +210,6 @@ const Map = (props: {name: string, data: DataBundle}) => {
       {
         visibleInstallments.length &&
         <MapTimeline
-          type={data.type}
           installment={data.installments[Math.max(...visibleInstallments)]}
           initialValue={initialRange}
           callback={(range) => {

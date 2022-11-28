@@ -28,7 +28,7 @@ const SeriesCard = (props: { series: Series }) => {
           <Title title={series.title} subtitle='Series'/>
           <div className='details book-count'>
             <GiBookPile size={16} color={colors.primary.lightGray}/>
-            <p>{ series.installments.length } { series.type }{ series.installments.length > 1 ? 's' : '' }</p>
+            <p>{ series.installments.length } Title{ series.installments.length > 1 ? 's' : '' }</p>
           </div>
         </div>
         
