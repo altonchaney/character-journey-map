@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import {
+  // GiRingedPlanet, //planet
+  GiMoonOrbit, //planet
   GiTreasureMap, //region
   GiMedievalGate, //city
   GiMedievalPavilion, //town
@@ -18,6 +20,8 @@ const MapMarker = (props: { marker: Marker, enlarged: boolean }) => {
 
   const markerIcon = useCallback(() => {
     switch (marker.type) {
+      case 'planet':
+        return <GiMoonOrbit size={enlarged ? 20 : 14} color={colors.primary.white}/>
       case 'battle':
         return <GiSwordsEmblem size={enlarged ? 20 : 14} color={colors.primary.white}/>
       case 'region':
@@ -37,6 +41,8 @@ const MapMarker = (props: { marker: Marker, enlarged: boolean }) => {
 
   const markerColor = useCallback(() => {
     switch (marker.type) {
+      case 'planet':
+        return colors.tertiary.green;
       case 'battle':
         return colors.tertiary.red;
       case 'region':
