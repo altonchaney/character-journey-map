@@ -21,6 +21,7 @@ export type Series = {
   installments: Installment[];
   characters: Character[];
   planetName?: string;
+  timeframe?: string;
   description?: string;
 };
 

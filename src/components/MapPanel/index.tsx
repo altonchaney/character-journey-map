@@ -11,7 +11,7 @@ import colors from '../../assets/colors';
 const MapPanel = (
   props: {
     title: string,
-    details?: { planet?: string, description?: string }
+    details?: { planet?: string, timeframe?: string, description?: string }
     characters: Character[],
     installments: Installment[],
     visibleRange: number[],
@@ -43,7 +43,9 @@ const MapPanel = (
             <ul>
               {
                 Object.keys(details).map((key) => (
-                  <li key={(details as any)[key]}><p className='opaque'>{ key[0].toUpperCase() + key.slice(1) }:</p> { (details as any)[key] }</li>
+                  (details as any)[key] ?
+                  <li key={(details as any)[key]}><p className='opaque'>{ key[0].toUpperCase() + key.slice(1) }:</p> { (details as any)[key] }</li> :
+                  <></>
                 ))
               }
             </ul>

@@ -200,9 +200,10 @@ const Map = (props: {name: string, data: DataBundle}) => {
         selectedInstallments={visibleInstallments}
         visibleRange={visibleRange}
         details={
-          data.planetName && data.description ?
+          data.description ?
           {
             planet: data.planetName,
+            timeframe: data.timeframe,
             description: data.description
           }: undefined
         }
