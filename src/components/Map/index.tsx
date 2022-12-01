@@ -136,7 +136,7 @@ const Map = (props: {name: string, data: DataBundle}) => {
               data.installments[installmentIndex].chapters[visibleRange[1]] &&
               data.installments[installmentIndex].chapters[visibleRange[1]].chapter === path.chapter.chapter ?
               8 : 4,
-            dashArray: path.confirmed ? [0] : [1, 6],
+            dashArray: path.confirmed ? [0] : [1, 10],
             opacity: latestVisibleInstallment === installmentIndex ? 1 : 0.5
           }}
         />
