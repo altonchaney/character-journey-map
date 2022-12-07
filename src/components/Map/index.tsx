@@ -120,6 +120,7 @@ const Map = (props: {name: string, data: DataBundle}) => {
           latestVisibleInstallment > installmentIndex ||
           (
             data.installments[installmentIndex].chapters[visibleRange[0]] && data.installments[installmentIndex].chapters[visibleRange[1]] &&
+            path.chapter &&
             data.installments[installmentIndex].chapters[visibleRange[0]].chapter <= path.chapter.chapter &&
             data.installments[installmentIndex].chapters[visibleRange[1]].chapter >= path.chapter.chapter
           )
@@ -134,6 +135,7 @@ const Map = (props: {name: string, data: DataBundle}) => {
             color: path.character.color, 
             weight: latestVisibleInstallment === installmentIndex &&
               data.installments[installmentIndex].chapters[visibleRange[1]] &&
+              path.chapter &&
               data.installments[installmentIndex].chapters[visibleRange[1]].chapter === path.chapter.chapter ?
               8 : 4,
             dashArray: path.confirmed ? [0] : [1, 10],
@@ -186,8 +188,8 @@ const Map = (props: {name: string, data: DataBundle}) => {
           bounds={[[0,0], data.map.dimensions]}
           className='map'
         />
-        { visibleInstallments.map(i => renderMarkers(i)) }
-        { visibleInstallments.map(i => renderPaths(i)) }
+        { visibleInstallments.sort((a, b) => (a - b)).map(i => renderMarkers(i)) }
+        { visibleInstallments.sort((a, b) => (a - b)).map(i => renderPaths(i)) }
         <Coordinates />
       </MapContainer>
       <MapPanel
