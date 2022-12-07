@@ -32,19 +32,19 @@ const MapPanel = (
     <div className='container'>
       <div className={`MapPanel content-container ${ open ? 'open' : '' }`}>
         <Link className='exit' to={'/'}><GiExitDoor size={15} color={colors.primary.whiteTransparent}/></Link>
-        <Title title={title} subtitle='Series'/>
+        <Title key='title-series' title={title} subtitle='Series'/>
         {
           details &&
           <div
             className={`details-container ${ detailsVisible ? 'open' : '' }`}
             onClick={() => setDetailsVisible(!detailsVisible)}
           >
-            <Title subtitle={detailsVisible ? 'Details' : 'See Details'}/>
+            <Title key='subtitle-details' subtitle={detailsVisible ? 'Details' : 'See Details'}/>
             <ul>
               {
-                Object.keys(details).map((key) => (
+                Object.keys(details).map((key, i) => (
                   (details as any)[key] ?
-                  <li key={(details as any)[key]}><p className='opaque'>{ key[0].toUpperCase() + key.slice(1) }:</p> { (details as any)[key] }</li> :
+                  <li key={key + '-' + (details as any)[key] + '-' + i}><p className='opaque'>{ key[0].toUpperCase() + key.slice(1) }:</p> { (details as any)[key] }</li> :
                   <></>
                 ))
               }
@@ -52,8 +52,8 @@ const MapPanel = (
           </div>
         }
         
-        <Title subtitle='Characters'/>
-        <div className='list-container'>
+        <Title key='title-characters' subtitle='Characters'/>
+        <div key='list-characters' className='list-container'>
           {
             characters
               .filter(character => (
@@ -71,9 +71,9 @@ const MapPanel = (
                   )
                 )
               ))
-              .map(character => (
+              .map((character, index) => (
                 <ListItem
-                  key={`character-item-${character.name}`}
+                  key={`character-item-${character.name}-${index}`}
                   selected={selectedCharacters.includes(character.name)}
                   title={character.name}
                   image={character.image}
@@ -83,12 +83,12 @@ const MapPanel = (
               ))
           }
         </div>
-        <Title subtitle='Installments'/>
-        <div className='list-container'>
+        <Title key='title-installments' subtitle='Installments'/>
+        <div key='list-installments' className='list-container'>
           {
             installments.map((Installment, index) => (
               <ListItem
-                key={`Installment-item-${Installment.title}`}
+                key={`Installment-item-${Installment.title}-${index}`}
                 selected={selectedInstallments.includes(index)}
                 title={Installment.title}
                 image={Installment.image}
@@ -97,7 +97,7 @@ const MapPanel = (
             ))
           }
         </div>
-        <Title subtitle='Legend'/>
+        <Title key='title-legends' subtitle='Legend'/>
         <div className='legend-container'>
           <div className='indicator confirmed'>
             <p className='alt'>Confirmed Path</p>
@@ -131,9 +131,9 @@ const MapPanel = (
                 )
               )
             ))
-            .map(character => (
+            .map((character, index) => (
               <ListItem
-                key={`character-condensed-item-${character.name}`}
+                key={`character-condensed-item-${character.name}-${index}`}
                 selected={selectedCharacters.includes(character.name)}
                 image={character.image}
                 color={character.color}

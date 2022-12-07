@@ -69,8 +69,8 @@ h1.alt {
 
 h2 {
   font-family: 'GaramondSemiBold', serif;
-  letter-spacing: -0.5px;
   font-size: 23px;
+  line-height: 21px;
   letter-spacing: -0.25px;
   margin: 0;
 }

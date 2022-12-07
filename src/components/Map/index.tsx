@@ -191,6 +191,7 @@ const Map = (props: {name: string, data: DataBundle}) => {
         <Coordinates />
       </MapContainer>
       <MapPanel
+        key={`map-panel-${ data.title }`}
         title={data.title}
         characters={data.characters}
         installments={data.installments}
