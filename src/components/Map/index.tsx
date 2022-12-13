@@ -27,13 +27,13 @@ const Map = (props: {name: string, data: DataBundle}) => {
   const [activeMap, setActiveMap] = useState<'physical' | 'cognitive'>('physical');
   const [visibleCharacters, setVisibleCharacters] = useState<string[]>(data.characters.map(c => c.name));
   const [visibleInstallments, setVisibleInstallments] = useState<number[]>([0]);
-  const [visibleRange, setVisibleRange] = useState<number[]>([0, 0]);
-  const [initialRange, setInitialRange] = useState<number[]>();
+  const [visibleEnd, setVisibleEnd] = useState<number>(0);
+  const [initialEnd, setInitialEnd] = useState<number>();
   const valueHandler = useMemo(() => ({
     'Characters': visibleCharacters,
     'Installments': visibleInstallments,
-    'Range': visibleRange,
-  }), [visibleCharacters, visibleInstallments, visibleRange]);
+    'End': visibleEnd,
+  }), [visibleCharacters, visibleInstallments, visibleEnd]);
   const valueSetterHandler = useMemo(() => ({
     'Characters': setVisibleCharacters,
     'Installments': setVisibleInstallments,
@@ -51,21 +51,18 @@ const Map = (props: {name: string, data: DataBundle}) => {
       visibleInstallments.filter(i => (i !== installmentIndex)) : [...visibleInstallments, installmentIndex];
     setVisibleInstallments(newVisibleInstallments);
     localStorage.setItem(`${name}-Installments`, JSON.stringify(newVisibleInstallments));
-    setInitialRange([0,0]);
+    setInitialEnd(0);
   };
 
   const renderMarkers = useCallback((installmentIndex: number) => {
     const latestVisibleInstallment = Math.max(...visibleInstallments);
-    var visibleRangeArray = [];
-    for (let i = visibleRange[0]; i <= visibleRange[1]; i++) { visibleRangeArray.push(i); }
-    const visibleChapters = Array.from(new Set(
-      visibleRangeArray.map(
-        (i) => (
-          data.installments[latestVisibleInstallment].chapters[i] ?
-          data.installments[latestVisibleInstallment].chapters[i].chapter : 0
-        )
-      )
-    ));
+    var visibleChapters: number[] = [];
+    for (let i = 0; i <= visibleEnd; i++) {
+      visibleChapters.push(
+        data.installments[latestVisibleInstallment].chapters[i] ?
+        data.installments[latestVisibleInstallment].chapters[i].chapter : 0
+      );
+    }
     return data.markers
       .filter(marker => (
         marker.appearances[installmentIndex + 1] &&
@@ -81,11 +78,11 @@ const Map = (props: {name: string, data: DataBundle}) => {
           icon={
             new DivIcon({
               html: renderToStaticMarkup(
-                <MapMarker marker={marker} enlarged={latestVisibleInstallment === installmentIndex && marker.appearances[installmentIndex + 1].includes(data.installments[installmentIndex].chapters[visibleRange[1]])} />
+                <MapMarker marker={marker} enlarged={latestVisibleInstallment === installmentIndex && marker.appearances[installmentIndex + 1].includes(data.installments[installmentIndex].chapters[visibleEnd])} />
               ),
-              iconSize: latestVisibleInstallment === installmentIndex && marker.appearances[installmentIndex + 1].includes(data.installments[installmentIndex].chapters[visibleRange[1]]) ?
+              iconSize: latestVisibleInstallment === installmentIndex && marker.appearances[installmentIndex + 1].includes(data.installments[installmentIndex].chapters[visibleEnd]) ?
                 [36, 36] : [22, 22],
-              iconAnchor: latestVisibleInstallment === installmentIndex && marker.appearances[installmentIndex + 1].includes(data.installments[installmentIndex].chapters[visibleRange[1]]) ?
+              iconAnchor: latestVisibleInstallment === installmentIndex && marker.appearances[installmentIndex + 1].includes(data.installments[installmentIndex].chapters[visibleEnd]) ?
                 [18, 18] : [11, 11],
             })
           }
@@ -106,7 +103,7 @@ const Map = (props: {name: string, data: DataBundle}) => {
           </Tooltip>
         </Marker>
       ))
-  }, [visibleRange, visibleInstallments, data.installments, data.markers]);
+  }, [visibleEnd, visibleInstallments, data.installments, data.markers]);
 
   const renderPaths = useCallback((installmentIndex: number) => {
     const latestVisibleInstallment = Math.max(...visibleInstallments);
@@ -119,10 +116,8 @@ const Map = (props: {name: string, data: DataBundle}) => {
         (
           latestVisibleInstallment > installmentIndex ||
           (
-            data.installments[installmentIndex].chapters[visibleRange[0]] && data.installments[installmentIndex].chapters[visibleRange[1]] &&
-            path.chapter &&
-            data.installments[installmentIndex].chapters[visibleRange[0]].chapter <= path.chapter.chapter &&
-            data.installments[installmentIndex].chapters[visibleRange[1]].chapter >= path.chapter.chapter
+            data.installments[installmentIndex].chapters[visibleEnd] && path.chapter &&
+            data.installments[installmentIndex].chapters[visibleEnd].chapter >= path.chapter.chapter
           )
         )
       ))
@@ -134,16 +129,15 @@ const Map = (props: {name: string, data: DataBundle}) => {
           pathOptions={{
             color: path.character.color, 
             weight: latestVisibleInstallment === installmentIndex &&
-              data.installments[installmentIndex].chapters[visibleRange[1]] &&
-              path.chapter &&
-              data.installments[installmentIndex].chapters[visibleRange[1]].chapter === path.chapter.chapter ?
+              data.installments[installmentIndex].chapters[visibleEnd] && path.chapter &&
+              data.installments[installmentIndex].chapters[visibleEnd].chapter === path.chapter.chapter ?
               8 : 4,
             dashArray: path.confirmed ? [0] : [1, 10],
             opacity: latestVisibleInstallment === installmentIndex ? 1 : 0.5
           }}
         />
       ))
-  }, [visibleCharacters, visibleInstallments, visibleRange, data.installments, data.paths]);
+  }, [visibleCharacters, visibleInstallments, visibleEnd, data.installments, data.paths]);
 
   useEffect(() => {
     ['Characters', 'Installments'].forEach(key => {
@@ -155,8 +149,8 @@ const Map = (props: {name: string, data: DataBundle}) => {
       }
     });
 
-    if (!!localStorage.getItem(`${name}-Range`) && !initialRange) {
-      setInitialRange(JSON.parse(localStorage.getItem(`${name}-Range`) as string));
+    if (!!localStorage.getItem(`${name}-End`) && !initialEnd) {
+      setInitialEnd(Number(localStorage.getItem(`${name}-End`) as string));
     }
   }, [name]);
 
@@ -201,7 +195,7 @@ const Map = (props: {name: string, data: DataBundle}) => {
         selectInstallment={toggleVisibleInstallments}
         selectedCharacters={visibleCharacters}
         selectedInstallments={visibleInstallments}
-        visibleRange={visibleRange}
+        visibleEnd={visibleEnd}
         details={
           data.description ?
           {
@@ -215,11 +209,10 @@ const Map = (props: {name: string, data: DataBundle}) => {
         visibleInstallments.length &&
         <MapTimeline
           installment={data.installments[Math.max(...visibleInstallments)]}
-          initialValue={initialRange}
-          callback={(range) => {
-            range.sort((a, b) => (a - b));
-            setVisibleRange(range);
-            localStorage.setItem(`${name}-Range`, JSON.stringify(range));
+          initialEnd={initialEnd}
+          callback={(end) => {
+            setVisibleEnd(end);
+            localStorage.setItem(`${name}-End`, String(end));
           }}
         />
       }

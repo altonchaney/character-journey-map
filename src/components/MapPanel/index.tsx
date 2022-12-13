@@ -14,14 +14,14 @@ const MapPanel = (
     details?: { planet?: string, timeframe?: string, description?: string }
     characters: Character[],
     installments: Installment[],
-    visibleRange: number[],
+    visibleEnd: number,
     selectedCharacters: string[], selectedInstallments: number[],
     selectCharacter: (name: string) => void,
     selectInstallment: (index: number) => void
   }
 ) => {
   const {
-    title, details, characters, installments, visibleRange,
+    title, details, characters, installments, visibleEnd,
     selectedCharacters, selectedInstallments,
     selectCharacter, selectInstallment
   } = props;
@@ -64,8 +64,8 @@ const MapPanel = (
                   (
                     character.firstAppearance[Math.max(...selectedInstallments) + 1] &&
                     (
-                      installments[Math.max(...selectedInstallments)].chapters[visibleRange[1]] &&
-                      installments[Math.max(...selectedInstallments)].chapters[visibleRange[1]].chapter >=
+                      installments[Math.max(...selectedInstallments)].chapters[visibleEnd] &&
+                      installments[Math.max(...selectedInstallments)].chapters[visibleEnd].chapter >=
                       character.firstAppearance[Math.max(...selectedInstallments) + 1].chapter
                     )
                   )
@@ -122,9 +122,9 @@ const MapPanel = (
                   (Number(Object.keys(character.firstAppearance)[0]) - 1) ||
                   (
                     character.firstAppearance[Math.max(...selectedInstallments) + 1] &&
-                    installments[Math.max(...selectedInstallments)].chapters[visibleRange[1]] &&
+                    installments[Math.max(...selectedInstallments)].chapters[visibleEnd] &&
                     (
-                      installments[Math.max(...selectedInstallments)].chapters[visibleRange[1]].chapter >=
+                      installments[Math.max(...selectedInstallments)].chapters[visibleEnd].chapter >=
                       character.firstAppearance[Math.max(...selectedInstallments) + 1].chapter
                     )
                   )

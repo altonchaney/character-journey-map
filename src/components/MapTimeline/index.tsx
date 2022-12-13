@@ -2,32 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import colors from '../../assets/colors';
 
-import { Installment, Chapter, MediaType, MediaInstallment } from '../../models';
+import { Installment, MediaInstallment } from '../../models';
 import './MapTimeline.css';
 
 
-export type ChapterRange = { start: Chapter, end: Chapter };
+const MapTimeline = (props: { installment: Installment, initialEnd?: number, callback: (end: number) => void }) => {
+  const { installment, initialEnd, callback } = props;
+  const [selectedEnd, setselectedEnd] = useState<number>(0);
+  const [initialEndSet, setInitialEndSet] = useState<boolean>(false);
 
-const MapTimeline = (props: { installment: Installment, initialValue?: number[], callback: (range: number[]) => void }) => {
-  const { installment, initialValue, callback } = props;
-  const [selectedRange, setSelectedRange] = useState<number[]>([0, 0]);
-  const [initialValueSet, setInitialValueSet] = useState<boolean>(false);
-
-  const changeChapterRange = (e: number[]) => {
-    setSelectedRange(e);
+  const changeEndChapter = (e: number) => {
+    setselectedEnd(e);
     callback(e);
   };
 
   useEffect(() => {
-    initialValueSet && changeChapterRange([0, 0]);
+    initialEndSet && changeEndChapter(0);
   }, [installment]);
 
   useEffect(() => {
-    if (!!initialValue && !initialValueSet) {
-      changeChapterRange(initialValue);
-      setInitialValueSet(true);
+    if (!!initialEnd && !initialEndSet) {
+      changeEndChapter(initialEnd);
+      setInitialEndSet(true);
     }
-  }, [initialValue]);
+  }, [initialEnd]);
 
   return (
     <div className='MapTimeline'>
@@ -41,9 +39,9 @@ const MapTimeline = (props: { installment: Installment, initialValue?: number[],
             }}
           >
             <Range
-              values={selectedRange}
+              values={[selectedEnd]}
               step={1} min={0} max={installment.chapters.length - 1}
-              onChange={(values) => changeChapterRange(values)}
+              onChange={(values) => changeEndChapter(values[0])}
               renderMark={({ props, index }) => (
                 <div
                   {...props}
@@ -96,8 +94,8 @@ const MapTimeline = (props: { installment: Installment, initialValue?: number[],
                       height: '5px',
                       width: '100%',
                       background: getTrackBackground({
-                        values: selectedRange,
-                        colors: [colors.primary.whiteTransparent, colors.primary.lightGray, colors.primary.whiteTransparent],
+                        values: [selectedEnd],
+                        colors: [colors.primary.lightGray, colors.primary.whiteTransparent],
                         min: 0,
                         max: installment.chapters.length - 1
                       }),
