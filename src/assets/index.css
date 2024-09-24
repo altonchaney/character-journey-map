@@ -7,10 +7,6 @@
   --black: #202124;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 @font-face {
   font-family: 'InconsolataExpandedSemiBold';
   src: url('./fonts/Inconsolata_Expanded-SemiBold.ttf') format('truetype');
