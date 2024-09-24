@@ -2,7 +2,7 @@
   "name": "character-journey-map",
   "description": "An interactive character journey mapping component package",
   "author": "altonchaney",
-  "version": "1.2.0",
+  "version": "1.2.4",
   "keywords": [
     "react",
     "leaflet",
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/altonchaney/character-journey-map#readme",
   "license": "MIT",
-  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -43,7 +42,7 @@
     "start": "react-scripts start",
     "clean": "rimraf dist/",
     "copy-files": "copyfiles -u 1 src/**/*.css src/**/**/*.css src/assets/fonts/*.ttf dist/",
-    "build": "npm run clean && tsc && cp package.json README.md ./dist && yarn copy-files",
+    "build": "npm run clean && tsc && cp package.json README.md ./dist && npm run copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
